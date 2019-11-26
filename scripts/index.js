@@ -1,7 +1,7 @@
 
 function addItem() {
     var txt_item = document.getElementById('txt_item').value;  
-    console.log(txt_item);
+
     $.ajax({
         data: { "txt_item" : txt_item},
         type: "POST",
@@ -9,7 +9,8 @@ function addItem() {
         url: "../todo/addItem.php",
     })
     .done(function( data, textStatus, jqXHR ) {
-       console.log(data);
+    
+      $('.js-items').append("<input type='checkbox' >" +  txt_item);
     })
     .fail(function( jqXHR, textStatus, errorThrown ) {
         console.log( "La solicitud a fallado: " +  textStatus);

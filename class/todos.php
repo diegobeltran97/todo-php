@@ -32,7 +32,9 @@ class Todos extends modeloCredencialesBD
         $id = (int) $user_id;
         $SQL = "INSERT INTO todos (user_id, todo_item) VALUES ('" . $id . "','" . $todo_text . "')";
         $actualiza= $this->_db->query($SQL);
+    
         if($actualiza) {
+            
               $this->_db->close();
         } else {
            echo $this->_db->error; 

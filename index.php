@@ -22,10 +22,13 @@ if(array_key_exists('enviar',$_POST)){
     $numRows = count($result_user);
  
     if ( $numRows > 0) {
+        // Start the session
+        session_start();
+        $_SESSION["user_id"] = $result_user[0]["id"];
+        $_SESSION["username"] = $user;
+        $_SESSION['islogged'] = true;
     
-        setcookie('my_id', $result_user[0]["id"]);
-        setcookie('username',$user);
-        setcookie('islogged',true);
+     
    
          echo '<script>window.location.href = "./todo/home.php";</script>';
     }

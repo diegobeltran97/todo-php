@@ -2,24 +2,26 @@
 
 require_once("../class/todos.php");
 
-
-if (!$_COOKIE['islogged']){
-    header("location:login.php");
+session_start();
+if ($_SESSION['islogged'] == false){
+    header("location:../index.php");
 }
 
 
-echo "welcome " . $_COOKIE['username'];
+echo "welcome " .  $_SESSION["username"];
 echo "Below you may find your TODO list :)";
 echo "<br/><br/>To Do list:<br/><br/>";
 
 $obj_todos = new Todos();
-$items = $obj_todos->getTodoItems($_COOKIE['my_id']);
+$items = $obj_todos->getTodoItems( $_SESSION["user_id"]);
 $nfilas=count($items);
 
 if ( $nfilas > 0 ) {
+    echo "<div class='js-items'>";
     foreach($items as $resultado) {
-        echo "<input type='checkbox' name='check_list[]' value='". $_COOKIE['my_id'] ." '> ".  $resultado['todo_item'] ." ' </td>";
+        echo "<input type='checkbox' iditem= '  " . $resultado['id'] . "  ' value=' ". $_SESSION["user_id"] ." '> "  . $resultado['todo_item'] ."</td>";
     }
+    echo "</div>";
 } else {
     echo "no hay tareas aún";
 }
@@ -48,15 +50,6 @@ if ( $nfilas > 0 ) {
 
 </div>
  
-
-<form method="post">
-    <table>
-        <tr><td>Description:</td><td><input type="text" name="description" /></td></tr>
-            <input type="submit" name="submit_description" value="Add"/>
-        </td></tr>
-    </table>
-</form>
-<hr />
 <script src="../scripts/index.js"></script>
 </body>
 </html>
