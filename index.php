@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="scripts/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    
+   
 </head>
 <body>
 
@@ -20,7 +25,7 @@ if(array_key_exists('enviar',$_POST)){
     $result_user = $obj_user->isUserValid( $user , $password );
     
     $numRows = count($result_user);
- 
+ var_dump($result_user[0]["id"]);
     if ( $numRows > 0) {
         // Start the session
         session_start();
@@ -43,12 +48,21 @@ else {
 
 
 ?>
-<form method="post" action="index.php" >
-        <table>
-            <tr><td>Username:</td><td><input type="text" name="reg_uname" value="" /></td></tr>
-            <tr><td>Password:</td><td><input type="password" name="reg_password" value="" /></td></tr>
-        </table>
-        <input type="submit" name="enviar" />
+
+<div class="wrapper">
+
+
+    <form method="post" action="index.php" class="container login-form" >
+      <div class="form-group">
+      
+        <input  class="form-control form-control-sm" type="text" name="reg_uname" value=""  placeholder="User" />
+    
+        
+      </div>
+      <div class="form-group">
+        <input  class="form-control form-control-sm" type="password" name="reg_password" value="" placeholder="Password" />  
+      </div>
+      <button type="submit" name="enviar" class="btn btn-primary mb-2" > Enter</button>
     </form>
     
     <form method ="link" action="register.php">
@@ -56,5 +70,6 @@ else {
     </form>
 
     <?php  } ?>
+    </div>
 </body>
 </html>

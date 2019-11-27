@@ -34,7 +34,6 @@ class Todos extends modeloCredencialesBD
         $actualiza= $this->_db->query($SQL);
     
         if($actualiza) {
-            
               $this->_db->close();
         } else {
            echo $this->_db->error; 

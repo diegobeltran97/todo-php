@@ -19,7 +19,7 @@ $nfilas=count($items);
 if ( $nfilas > 0 ) {
     echo "<div class='js-items'>";
     foreach($items as $resultado) {
-        echo "<input type='checkbox' iditem= '  " . $resultado['id'] . "  ' value=' ". $_SESSION["user_id"] ." '> "  . $resultado['todo_item'] ."</td>";
+        echo "<input type='checkbox' iditem= '  " . $resultado['id'] . "  ' userid=' ". $_SESSION["user_id"] ." '> "  . $resultado['todo_item'] ."</td>";
     }
     echo "</div>";
 } else {
@@ -37,7 +37,7 @@ if ( $nfilas > 0 ) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="../scripts/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
@@ -50,6 +50,6 @@ if ( $nfilas > 0 ) {
 
 </div>
  
-<script src="../scripts/index.js"></script>
+<script src="../js/index.js"></script>
 </body>
 </html>
