@@ -53,21 +53,23 @@ else {
 
 
     <form method="post" action="index.php" class="container login-form" >
-      <div class="form-group">
-      
-        <input  class="form-control form-control-sm" type="text" name="reg_uname" value=""  placeholder="User" />
-    
-        
-      </div>
-      <div class="form-group">
-        <input  class="form-control form-control-sm" type="password" name="reg_password" value="" placeholder="Password" />  
-      </div>
+     
+        <input   type="text" name="reg_uname" value=""  placeholder="User" />
+        <input   type="password" name="reg_password" value="" placeholder="Password" />  
       <button type="submit" name="enviar" class="btn btn-primary mb-2" > Enter</button>
-    </form>
+ 
+      <p class="message">Not registered?
+         <a href="register.php">Register</a>
+      </p>
+      
+
+
     
-    <form method ="link" action="register.php">
-        <input type="submit" value="Register"/>
     </form>
+
+     
+    
+ 
 
     <?php  } ?>
     </div>

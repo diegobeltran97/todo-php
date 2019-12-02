@@ -28,16 +28,41 @@ class Todos extends modeloCredencialesBD
       
     }
 
+    public function getLastId( $user_id ){
+        $id = intval( $user_id);
+        $instruccion = "CALL getLastId(1)";
+        $consulta=$this->_db->query($instruccion);
+        $resultado=$consulta->fetch_all(MYSQLI_ASSOC);
+            if($resultado){
+                return $resultado;
+                $resultado->close();
+                $this->_db->close();
+            }
+    }
+
     public function addItem($user_id, $todo_text) {
         $id = (int) $user_id;
         $SQL = "INSERT INTO todos (user_id, todo_item) VALUES ('" . $id . "','" . $todo_text . "')";
         $actualiza= $this->_db->query($SQL);
     
+        // if($actualiza) {
+        //       $this->_db->close();
+        // } else {
+        //    echo $this->_db->error; 
+        // }
+    }
+    public function deleteItem($userId, $idItem) {
+     
+       
+        $SQL = "DELETE FROM todos WHERE id = ".$idItem." AND user_id = ".$userId." ";
+    
+        $actualiza= $this->_db->query($SQL);
         if($actualiza) {
               $this->_db->close();
         } else {
            echo $this->_db->error; 
         }
+             
     }
     
     
