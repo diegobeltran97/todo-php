@@ -7,22 +7,25 @@ if ($_SESSION['islogged'] == false){
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Reports</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/home.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.js"></script>
- 
-       
+    <script src="../js/Chart.js"></script>
+
+
 </head>
 <body>
-<header>
+
+    <header>
         <nav class="navbar navbar-expand-lg navbar-light ">
                         
                         <div class="navbar-nav">
@@ -31,36 +34,26 @@ if ($_SESSION['islogged'] == false){
                         </div>
         </nav>
     </header>
+ 
     <div class="container">
-
-   
-        <div class="row tasks">
-
-       
-            <div class="col-sm-12 col-lg-6 col-xl-6 ">   
-                <div class="row d-flex flex-column" >  
-                    
-                 
-
-                    <div class="col-12 d-flex align-items-start">
-                       
-                        <div class="row">
-                           <input class="col-9" type="text" name="" id="txt_item" placeholder="Enter a Task">               
-                          <button class="add col-3" onclick="addItem()" >
-                          <img src="../img/add.png" alt=""></button>
-                        </div>
-                       
-                    
-                    </div>
-
-                   
-                
+    <div class="row">
+        <div class="col-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    Grafico
                 </div>
+                <div class="card-body">
+                <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+                
+                <div class="card-footer text-muted">
+                        2 days ago
             </div>
-
-            <div class=" col-sm-12 col-lg-6  col-xl-6 list-item">
-             <?php 
-                print "<h3 class='title'> Bienvenido " .  $_SESSION["username"] . "</h3>";
+            </div>
+        </div>
+        <div class="col-6">
+        <?php 
+                print "<h3 class='title'> Tareas Realizadas por " .  $_SESSION["username"] . "</h3>";
                 $obj_todos = new Todos();
                 $items = $obj_todos->getTodoItems( $_SESSION["user_id"]);
                 $nfilas=count($items);
@@ -69,7 +62,7 @@ if ($_SESSION['islogged'] == false){
            
               
                 if ( $nfilas > 0 ) {
-                    echo "<p class='font-weight-bold'> Estas son sus tareas</p>";
+              
                     echo "<div class='js-items'>";
                     
                     echo "<ul class='list-items'>";
@@ -100,15 +93,44 @@ if ($_SESSION['islogged'] == false){
                 }
 
            ?>
-
-            </div>
         </div>
-
+    
     </div>
-   
+    
+    </div>
+    <script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['to do', 'done'],
+        datasets: [{
+            label: '# of Votes',
+            data: [30, 70],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+     
+    }
+});
+</script>
 
-
-
-<script src="../js/index.js"></script>
 </body>
 </html>
