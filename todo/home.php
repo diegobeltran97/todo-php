@@ -29,22 +29,20 @@ if ($_SESSION['islogged'] == false){
         <div class="row tasks">
 
        
-            <div class="col-6">   
-                <div class="row d-flex flex-column" style="height:100vh;">  
+            <div class="col-sm-12 col-lg-6 col-xl-6 ">   
+                <div class="row d-flex flex-column" >  
                     
                     <div class="col-2">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                           
+                    <nav class="navbar navbar-expand-lg navbar-light ">
+                        
                             <div class="navbar-nav">
-                                <a class="nav-item nav-link active" href="home.php">Home </a>
-                                <a class="nav-item nav-link active" href="./reportes.php">Reportes </a>
+                                <a class="nav-item nav-link active font-weight-bold" href="home.php">Home </a>
+                                <a class="nav-item nav-link active font-weight-bold" href="./reportes.php">Reportes </a>
                             </div>
-                        </div>
                     </nav>
                     </div>
 
-                    <div class="col-10 d-flex align-items-center">
+                    <div class="col-10 d-flex align-items-start">
                        
                         <div class="row">
                            <input class="col-9" type="text" name="" id="txt_item" placeholder="Enter a Task">               
@@ -60,7 +58,7 @@ if ($_SESSION['islogged'] == false){
                 </div>
             </div>
 
-            <div class="col-6 list-item">
+            <div class=" col-sm-12 col-lg-6  col-xl-6 list-item">
              <?php 
                 print "<h3 class='title'> Bienvenido " .  $_SESSION["username"] . "</h3>";
                 $obj_todos = new Todos();
@@ -68,9 +66,14 @@ if ($_SESSION['islogged'] == false){
                 $nfilas=count($items);
 
 
-                echo "<div class='js-items'>";
-                echo "<ul class='list-items' >";
+           
+              
                 if ( $nfilas > 0 ) {
+                    echo "<p class='font-weight-bold'> Estas son sus tareas</p>";
+                    echo "<div class='js-items'>";
+                    
+                    echo "<ul class='list-items'>";
+                    
                    
                     foreach($items as $resultado) {
                         ?>
@@ -87,7 +90,7 @@ if ($_SESSION['islogged'] == false){
                            
                         </li>
                   
-                   <?php }
+                   <?php  }
                      echo "</ul>";
                     
                      echo "</div>"; 

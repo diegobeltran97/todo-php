@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2019 a las 15:25:50
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.3.6
+-- Servidor: localhost
+-- Tiempo de generación: 12-12-2019 a las 17:46:53
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -22,6 +22,18 @@ SET time_zone = "+00:00";
 -- Base de datos: `todo`
 --
 
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getLastId` (IN `id_user` INT)  BEGIN
+    SELECT * 
+     FROM todos
+    WHERE user_id = id_user;
+END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -31,22 +43,22 @@ SET time_zone = "+00:00";
 CREATE TABLE `todos` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `todo_item` varchar(100) NOT NULL
+  `todo_item` varchar(100) NOT NULL,
+  `completed` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `todos`
 --
 
-INSERT INTO `todos` (`id`, `user_id`, `todo_item`) VALUES
-(1, 1, 'ALE!'),
-(4, 1, 'Have Fun!'),
-(5, 1, 'Have Fun!'),
-(6, 3, 'Learn C#!'),
-(34, 3, 'Tralalala'),
-(35, 3, 'More LALA'),
-(36, 3, 'Even More LALA'),
-(38, 1, 'sdsdsds');
+INSERT INTO `todos` (`id`, `user_id`, `todo_item`, `completed`) VALUES
+(6, 3, 'Learn C#!', NULL),
+(34, 3, 'Tralalala', NULL),
+(35, 3, 'More LALA', NULL),
+(36, 3, 'Even More LALA', NULL),
+(48, 1, 'tarea de php', 1),
+(49, 1, 'tarea de ingles', 1),
+(50, 1, 'test2', 0);
 
 -- --------------------------------------------------------
 
@@ -98,7 +110,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `todos`
 --
 ALTER TABLE `todos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

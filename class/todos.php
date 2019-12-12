@@ -13,7 +13,7 @@ class Todos extends modeloCredencialesBD
     //Methods
     public function getTodoItems( $userid) {
         $id = (int) $userid;
-        $SQL = "SELECT * FROM todos WHERE user_id = $id ";
+        $SQL = "SELECT * FROM todos WHERE user_id = $id AND NOT completed";
         $consulta=$this->_db->query($SQL);
         $resultado=$consulta->fetch_all(MYSQLI_ASSOC);
        
@@ -30,7 +30,7 @@ class Todos extends modeloCredencialesBD
 
     public function getLastId( $user_id ){
         $id = intval( $user_id);
-        $instruccion = "CALL getLastId(1)";
+        $instruccion = "CALL getLastId('".$id."')";
         $consulta=$this->_db->query($instruccion);
         $resultado=$consulta->fetch_all(MYSQLI_ASSOC);
             if($resultado){
@@ -42,7 +42,7 @@ class Todos extends modeloCredencialesBD
 
     public function addItem($user_id, $todo_text) {
         $id = (int) $user_id;
-        $SQL = "INSERT INTO todos (user_id, todo_item) VALUES ('" . $id . "','" . $todo_text . "')";
+        $SQL = "INSERT INTO todos (user_id, todo_item , completed ) VALUES ('" . $id . "',  '" . $todo_text . "' , '" . false . "' )";
         $actualiza= $this->_db->query($SQL);
     
         // if($actualiza) {
@@ -54,7 +54,10 @@ class Todos extends modeloCredencialesBD
     public function deleteItem($userId, $idItem) {
      
        
-        $SQL = "DELETE FROM todos WHERE id = ".$idItem." AND user_id = ".$userId." ";
+       /*  $SQL = "DELETE FROM todos WHERE id = ".$idItem." AND user_id = ".$userId." "; */
+        $SQL = "UPDATE todos SET completed = true WHERE id = ".$idItem." AND user_id = ".$userId." ";
+
+
     
         $actualiza= $this->_db->query($SQL);
         if($actualiza) {

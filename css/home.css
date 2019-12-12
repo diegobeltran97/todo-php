@@ -1,6 +1,9 @@
+body {
+    background-color: #faf9f7;
+}
+
 .todo-list {
     position: relative;
-    float: left;
     width: 100%;
     height: 75px;
     left: 0;
@@ -29,14 +32,6 @@
     font-size: 14px;
     font-weight: 700;
 }
-.tasks {
-    height: 100vh;
-  
-}
-
-.list-items {
-    border-left: 4px solid #3752A6;
-  }
 
 button.add {
     background: #1dd2af;
@@ -50,9 +45,15 @@ button.add {
 }
 .title {
     margin-top: 10px;
-    border-bottom: 2px solid;
+   
     padding-bottom: 4px;
 }
 .message {
     position: absolute;
+}
+
+.js-items {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
 }
