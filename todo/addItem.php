@@ -12,17 +12,19 @@ $obj_Item = new Todos();
 
   $result = $obj_Item->getLastId($user_id);
 
-echo "<li   class='row todo-list'  idItem= '".$result[0]['id'] ."' >
+echo "<li  class='row todo-list' style='display:none;' idItem='".$result[0]['id'] ."' >
   <div class='col-2'>
       <p></p>
   </div>
   <div class='col-8 d-flex align-items-center'>
       <p class='description'> ". $txt_item . "</p>
   </div>
-  <div class='col-2  d-flex align-items-center detele-item' userid=" .$user_id ."  idItem= ' " .$result[0]['id'] ."'  >
-      <a href='#' onclick='deleteItem(event)'><img src='../img/check2.png' alt=''></a>
+  <div class='col-2  d-flex align-items-center detele-item' userid=" .$user_id ."  idItem='".$result[0]['id'] ."'  >
+      <a href='#' onclick='deleteItem(event)'><img src='../img/close.png' alt=''></a>
   </div>
   </li>";
+
+  
 
  
 

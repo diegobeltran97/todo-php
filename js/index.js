@@ -10,9 +10,10 @@ function addItem() {
         url: "../todo/addItem.php",
     })
     .done(function( data, textStatus, jqXHR ) {
-
-      $('.list-items').append(data);
-    //   $(".todo-list").show('slow', "linear");
+    console.log(data);
+     $('.message').remove();
+      $('ul.list-items').append(data);
+      $(".todo-list").show('slow', "linear");
     })
     .fail(function( jqXHR, textStatus, errorThrown ) {
         console.log( "La solicitud a fallado: " +  textStatus);
@@ -21,13 +22,12 @@ function addItem() {
 
 
 function deleteItem(e){
-    var target = e.target || e.srcElement;
+    var target = e.target;
     var item =  target.parentElement.parentElement;
-    var userId = item.getAttribute("userid");
     var iditem = item.getAttribute("iditem");
     var itemToDelete;
   
-
+   console.log(target.parentElement.parentElement);
     $.ajax({
         data: { "iditem" : iditem},
         type: "POST",
@@ -41,16 +41,14 @@ function deleteItem(e){
             console.log(  a, b );
            if(  a == b ) {
                itemToDelete =  $(this);
+               
+        // itemToDelete.remove();
            }
-       } )
-    //    itemToDelete.animate({ width: "0px" } , "slow", "linear", function() {
-    //             itemToDelete.remove();
-    //     } );
+       })
 
-        itemToDelete.remove();
-       
-
-
+        itemToDelete.animate({ width: "0px" } , "slow", "linear", function() {
+                itemToDelete.remove();
+         } );
      
     })
     .fail(function( jqXHR, textStatus, errorThrown ) {

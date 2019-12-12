@@ -19,7 +19,7 @@ class Todos extends modeloCredencialesBD
        
         if($consulta){
             return $resultado;
-            $this->_db->close();
+            // $this->_db->close();
         } else {
             echo $this->_db->error; 
         }
@@ -35,8 +35,8 @@ class Todos extends modeloCredencialesBD
         $resultado=$consulta->fetch_all(MYSQLI_ASSOC);
             if($resultado){
                 return $resultado;
-                $resultado->close();
-                $this->_db->close();
+              
+                // $this->_db->close();
             }
     }
 
@@ -58,7 +58,7 @@ class Todos extends modeloCredencialesBD
     
         $actualiza= $this->_db->query($SQL);
         if($actualiza) {
-              $this->_db->close();
+            //   $this->_db->close();
         } else {
            echo $this->_db->error; 
         }

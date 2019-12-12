@@ -17,11 +17,8 @@
 
 .todo-list a img {
     display: block;
-    background-color: #4C75A1;
-    border-radius: 50%;
     color: #fff;
-    opacity: 0;
-  
+
 }
 .todo-list a img:hover {
     opacity: 1;
@@ -50,4 +47,12 @@ button.add {
     border: none;
     padding: 14px;
     color: #fff;
+}
+.title {
+    margin-top: 10px;
+    border-bottom: 2px solid;
+    padding-bottom: 4px;
+}
+.message {
+    position: absolute;
 }
