@@ -38,23 +38,14 @@ if ($_SESSION['islogged'] == false){
 
        
             <div class="col-sm-12 col-lg-6 col-xl-6 ">   
-                <div class="row d-flex flex-column" >  
+                <div class="row d-flex flex-row addbox" >  
                     
-                 
-
-                    <div class="col-12 d-flex align-items-start">
-                       
-                        <div class="row">
-                           <input class="col-9" type="text" name="" id="txt_item" placeholder="Enter a Task">               
-                          <button class="add col-3" onclick="addItem()" >
-                          <img src="../img/add.png" alt=""></button>
-                        </div>
-                       
+                    <input class="col-8" type="text" name="" id="txt_item" placeholder="Enter a Task">               
                     
-                    </div>
-
-                   
-                
+                    <button class="add col-4" onclick="addItem()" >
+                        <img src="../img/add.png" alt="">
+                    </button>
+                    
                 </div>
             </div>
 
@@ -85,7 +76,7 @@ if ($_SESSION['islogged'] == false){
                                <p class="description"> <?php echo $resultado['todo_item']; ?> </p>
                            </div>
                            <div class="col-2  d-flex align-items-center detele-item" userid=" <?php echo $_SESSION['user_id'];  ?>"  idItem=" <?php echo $resultado['id']; ?>"  >
-                               <a href="#" onclick="deleteItem(event)"><img src="../img/close.png" alt="" width="30px"></a>
+                               <a href="#" onclick="updateItem(event)"><img src="../img/close.png" alt="" width="30px"></a>
                            </div>
                            
                         </li>

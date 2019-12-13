@@ -37,11 +37,18 @@ button.add {
     background: #1dd2af;
     border: none;
 }
+.tasks {
+    min-height: 100vh;
+}
 .tasks input {
+ 
     background: #313e50;
     border: none;
     padding: 14px;
     color: #fff;
+}
+.addbox {
+    margin-top: 40%;
 }
 .title {
     margin-top: 10px;

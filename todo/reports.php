@@ -6,6 +6,15 @@ if ($_SESSION['islogged'] == false){
     header("location:../index.php");
 }
 
+$user_id = $_SESSION["user_id"];
+$obj_Item = new Todos();
+$result = $obj_Item->getAvgCompleted( $user_id );
+$totalDone =  (float) $result[0]["AVG(completed)"] * 100;
+$totalTodo = 100 - $totalDone;
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +29,7 @@ if ($_SESSION['islogged'] == false){
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/Chart.js"></script>
-
+    <script src="../js/repors.js"></script>
 
 </head>
 <body>
@@ -47,7 +56,8 @@ if ($_SESSION['islogged'] == false){
                 </div>
                 
                 <div class="card-footer text-muted">
-                        2 days ago
+                     <p class="completed" completed="<?php echo $totalDone ?>">Completed <?php echo $totalDone ?>%</p>
+                     <p class="todo" todo="<?php echo $totalTodo ?>">Not Completed <?php echo $totalTodo?>%</p>
             </div>
             </div>
         </div>
@@ -55,7 +65,7 @@ if ($_SESSION['islogged'] == false){
         <?php 
                 print "<h3 class='title'> Tareas Realizadas por " .  $_SESSION["username"] . "</h3>";
                 $obj_todos = new Todos();
-                $items = $obj_todos->getTodoItems( $_SESSION["user_id"]);
+                $items = $obj_todos->getTodoItemsCompleted( $_SESSION["user_id"]);
                 $nfilas=count($items);
 
 
@@ -70,18 +80,18 @@ if ($_SESSION['islogged'] == false){
                    
                     foreach($items as $resultado) {
                         ?>
-                        <li class="row todo-list"  idItem=" <?php echo $resultado['id']; ?>"  >
+                        <del> <li class="row todo-list"  idItem=" <?php echo $resultado['id']; ?>"  >
                            <div class='col-2'>
                                <p></p>
                            </div>
                            <div class='col-8 d-flex align-items-center'>
-                               <p class="description"> <?php echo $resultado['todo_item']; ?> </p>
+                              <p class="description"> <?php echo $resultado['todo_item']; ?> </p>
                            </div>
                            <div class="col-2  d-flex align-items-center detele-item" userid=" <?php echo $_SESSION['user_id'];  ?>"  idItem=" <?php echo $resultado['id']; ?>"  >
                                <a href="#" onclick="deleteItem(event)"><img src="../img/close.png" alt="" width="30px"></a>
                            </div>
                            
-                        </li>
+                        </li></del>
                   
                    <?php  }
                      echo "</ul>";
@@ -98,39 +108,6 @@ if ($_SESSION['islogged'] == false){
     </div>
     
     </div>
-    <script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['to do', 'done'],
-        datasets: [{
-            label: '# of Votes',
-            data: [30, 70],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-     
-    }
-});
-</script>
-
+ 
 </body>
 </html>

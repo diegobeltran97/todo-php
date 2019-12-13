@@ -21,7 +21,7 @@ function addItem() {
 }
 
 
-function deleteItem(e){
+function updateItem(e){
     var target = e.target;
     var item =  target.parentElement.parentElement;
     var iditem = item.getAttribute("iditem");
