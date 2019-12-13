@@ -60,14 +60,14 @@ class Todos extends modeloCredencialesBD
 
     public function addItem($user_id, $todo_text) {
         $id = (int) $user_id;
-        $SQL = "INSERT INTO todos (user_id, todo_item , completed ) VALUES ('" . $id . "',  '" . $todo_text . "' , '" . false . "' )";
+        $SQL = "INSERT INTO todos ( user_id , todo_item , completed ) VALUES ('" . $id . "',  '" . $todo_text . "' , false )";
         $actualiza= $this->_db->query($SQL);
     
-        // if($actualiza) {
+         if($actualiza) {
         //       $this->_db->close();
-        // } else {
-        //    echo $this->_db->error; 
-        // }
+        } else {
+          echo $this->_db->error; 
+        }
     }
 
     public function updateItem($userId, $idItem){

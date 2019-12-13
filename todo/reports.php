@@ -35,13 +35,7 @@ $totalTodo = 100 - $totalDone;
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light ">
-                        
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link active font-weight-bold" href="home.php">Home </a>
-                            <a class="nav-item nav-link active font-weight-bold" href="./reports.php">Reportes </a>
-                        </div>
-        </nav>
+         <?php include 'nav.php';?>
     </header>
  
     <div class="container">
@@ -98,8 +92,12 @@ $totalTodo = 100 - $totalDone;
                     
                      echo "</div>"; 
                 } else {
+                    if ( $totalTodo >= 100) {
+                        echo "<div class='message'> <h6> Aùn hay tareas en Espera</h6> </div>";
+                    } else {
+                       echo "<div class='message'> <h6> Felicitaciones, terminaste tus tareas </h6> </div>"; 
+                    }
                     
-                    echo "<div class='message'> <h6> Aún no hay tareas Disponibles  </h6> </div>";
                 }
 
            ?>

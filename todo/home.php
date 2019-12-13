@@ -3,7 +3,7 @@ require_once("../class/todos.php");
 
 session_start();
 if ($_SESSION['islogged'] == false){
-    header("location:../index.php");
+    echo '<script>window.location.href = "../index.php";</script>';
 }
 
 ?>
@@ -23,13 +23,9 @@ if ($_SESSION['islogged'] == false){
 </head>
 <body>
 <header>
-        <nav class="navbar navbar-expand-lg navbar-light ">
-                        
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link active font-weight-bold" href="home.php">Home </a>
-                            <a class="nav-item nav-link active font-weight-bold" href="./reports.php">Reportes </a>
-                        </div>
-        </nav>
+
+        <?php include 'nav.php';?>
+        
     </header>
     <div class="container">
 

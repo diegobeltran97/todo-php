@@ -9,7 +9,7 @@ $( document ).ready(function() {
             labels: ['to do', 'done'],
             datasets: [{
                 label: '# of Votes',
-                data: [complete, todo],
+                data: [todo , complete],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

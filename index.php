@@ -15,7 +15,10 @@
 <body>
 
 <?php 
+
+
 require_once("class/users.php");
+
 if(array_key_exists('enviar',$_POST)){
    
     $user = $_POST["reg_uname"];
@@ -38,13 +41,20 @@ if(array_key_exists('enviar',$_POST)){
          echo '<script>window.location.href = "./todo/home.php";</script>';
     }
     else {
-        echo "no passed";
+        echo '<script>window.location.href = "./index.php";</script>';
     }
     
    
     
 }
 else {
+
+    // remove all session variables
+session_unset();
+
+// destroy the session
+session_destroy();
+
 
 
 ?>
