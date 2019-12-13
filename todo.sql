@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 12-12-2019 a las 17:46:53
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-12-2019 a las 15:13:43
+-- Versión del servidor: 10.3.16-MariaDB
+-- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -26,6 +26,10 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCompleted` (`id` INT)  BEGIN
+  SELECT AVG(completed) FROM todos WHERE user_id = id;
+ END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getLastId` (IN `id_user` INT)  BEGIN
     SELECT * 
      FROM todos
@@ -56,9 +60,15 @@ INSERT INTO `todos` (`id`, `user_id`, `todo_item`, `completed`) VALUES
 (34, 3, 'Tralalala', NULL),
 (35, 3, 'More LALA', NULL),
 (36, 3, 'Even More LALA', NULL),
-(48, 1, 'tarea de php', 1),
-(49, 1, 'tarea de ingles', 1),
-(50, 1, 'test2', 0);
+(52, 1, 'tarea de ingles', 1),
+(53, 1, 'tarea de matematicas', 1),
+(54, 1, 'test4', 1),
+(55, 1, 'test4', 1),
+(56, 1, 'test4sd', 1),
+(57, 1, 'test4sdsdf', 0),
+(59, 1, 'tarea de ingles', 1),
+(60, 1, 'tesaq', 0),
+(61, 1, 'sdf', 0);
 
 -- --------------------------------------------------------
 
@@ -110,7 +120,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `todos`
 --
 ALTER TABLE `todos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
